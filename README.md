@@ -1,1 +1,1 @@
-# Grapical Operating System
+# Graphical Operating System
