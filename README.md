@@ -1,1 +1,1 @@
-# GOS
+# Grapical Operating System
