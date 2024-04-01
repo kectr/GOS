@@ -1,9 +1,11 @@
-#include "lib/byteOperations/byteOperations.h"
 #include "stdio.h"
+// #include "lib/Window/window.h"
 
 int main(){
-    uint8_t x = 0x01;
-    toggleBit(&x,0);
-    printf("%d",readBit(x,0));
-    return 0;
+   int x = 5,y=10;
+   x +=y;
+   y = x-y;
+   x -=y;
+   printf("%d%d",x,y);
+
 }

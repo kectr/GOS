@@ -1,22 +1,30 @@
 #include "BitArray2d.h"
 
-void BitArray2d::initialize(uint16_t heigt, uint16_t width)
+BitArray2d::BitArray2d()
+{
+}
+
+void BitArray2d::takeDataFromMem(){
+    BitArray2d::data = new uint8_t[heigt * width_8];
+}
+
+void BitArray2d::initialize(uint16_t width, uint16_t heigt)
 {
     BitArray2d::heigt = heigt;
     BitArray2d::width = width;
     BitArray2d::width_8 = (width + 7) / 8;
 }
 
-BitArray2d::BitArray2d(uint16_t heigt, uint16_t width, uint8_t *data)
+BitArray2d::BitArray2d(uint16_t width, uint16_t heigt, uint8_t *data)
 {
     BitArray2d::initialize(heigt, width);
     BitArray2d::data = data;
 }
 
-BitArray2d::BitArray2d(uint16_t heigt, uint16_t width)
+BitArray2d::BitArray2d(uint16_t width, uint16_t heigt)
 {
-    BitArray2d::initialize(heigt, width);
-    BitArray2d::data = new uint8_t[heigt * width_8];
+    BitArray2d::initialize(width, heigt);
+    BitArray2d::takeDataFromMem();
 }
 
 BitArray2d::~BitArray2d()

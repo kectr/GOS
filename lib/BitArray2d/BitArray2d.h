@@ -13,13 +13,15 @@ public:
     uint16_t heigt;
     uint16_t width;
     uint16_t width_8; //(width+7)/8
-    uint8_t *data;
+    uint8_t *data = nullptr;
 
-    BitArray2d(uint16_t heigt, uint16_t width, uint8_t *data);
-    BitArray2d(uint16_t heigt, uint16_t width);
-    void initialize(uint16_t heigt, uint16_t width);
+    BitArray2d();
+    BitArray2d(uint16_t width, uint16_t heigt, uint8_t *data);
+    BitArray2d(uint16_t width, uint16_t heigt);
+    void initialize(uint16_t width, uint16_t heigt);
+    void takeDataFromMem();
     ~BitArray2d();
-    
+
     uint8_t read(uint16_t x, uint16_t y);
     void write(uint16_t x, uint16_t y, uint8_t value);
 };
