@@ -1,4 +1,7 @@
 # Çıktı sistemi
->**Çıktı alınabilecek bir sitem oluştur test için**
++>**Çıktı alınabilecek bir sitem oluştur test için**
 ## Testler
 >**Fonksiyonları en garip şekilde test et**
+>>drawline+
+>>drawrectangle
+>>drawshape

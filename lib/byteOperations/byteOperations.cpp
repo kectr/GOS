@@ -2,7 +2,7 @@
 
 void setBit(uint8_t *byteAdr, uint8_t position)
 {
-    *byteAdr |= 0x01 << position;
+    *byteAdr |= 0x01 << position;//0x01 = 0b00000001
 }
 
 void clearBit(uint8_t *byteAdr, uint8_t position)
@@ -17,7 +17,7 @@ void toggleBit(uint8_t *byteAdr, uint8_t position)
 
 uint8_t readBit(uint8_t value, uint8_t position)
 {
-    return (value >> position) & 1;
+    return (value >> position) & 0x01;
 }
 
 void writeBit(uint8_t *byteAdr, uint8_t position, uint8_t value)

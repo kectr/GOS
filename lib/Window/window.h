@@ -1,5 +1,12 @@
-#include <stdint.h>
+#ifndef window_h
+#define window_h
+
+#ifndef BitArray2d_h
 #include "../BitArray2d/BitArray2d.h"
+#endif
+
+#include <stdint.h>
+
 
 class window
 {
@@ -23,19 +30,11 @@ public:
     drawableWindow();
     ~drawableWindow();
 
-    void drawLine(int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint8_t value);
-    void drawRectangle(int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint8_t value);
-    void drawShape(int16_t x1, int16_t y1, BitArray2d shape);
+    uint8_t drawLine(int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint8_t value = 1);
+    uint8_t drawRectangle(int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint8_t value = 1);
+    uint8_t drawShape(int16_t x1, int16_t y1, BitArray2d shape);
 };
 
-int8_t sgn(float val)
-{
-    if (val = 0)
-    {
-        return 0;
-    }
-    else
-    {
-        return (val > 0 ? 1 : -1);
-    }
-}
+int8_t sgn(float val);
+
+#endif
