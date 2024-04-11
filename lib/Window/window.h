@@ -7,7 +7,6 @@
 
 #include <stdint.h>
 
-
 class window
 {
 private:
@@ -35,6 +34,18 @@ public:
     uint8_t drawShape(int16_t x1, int16_t y1, BitArray2d shape);
 };
 
+class textWindow : public drawableWindow
+{
+private:
+    /* data */
+public:
+    textWindow();
+    ~textWindow();
+
+};
+
 int8_t sgn(float val);
+
+float flabs(float val);
 
 #endif

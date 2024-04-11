@@ -51,7 +51,7 @@ uint8_t drawableWindow::drawLine(int16_t x1, int16_t y1, int16_t x2, int16_t y2,
     else
     {
         dx = float(x2 - x1) / float(y2 - y1);
-        dy = abs(1 / dx) * sgn(y2 - y1);
+        dy = flabs(1 / dx) * sgn(y2 - y1);
     }
     if (-1 < dx && dx < 1)
     {
@@ -95,48 +95,42 @@ uint8_t drawableWindow::drawRectangle(int16_t x1, int16_t y1, int16_t x2, int16_
 
 uint8_t drawableWindow::drawShape(int16_t x1, int16_t y1, BitArray2d shape)
 {
-    printf("a");
-    if(x1>width||y1>height){
+    if (x1 > width || y1 > height)
+    {
         return 0;
     }
-    printf("b");
     int16_t
         x,
         y,
-        shendx = shape.width-1,
-        shendy = shape.height-1,
+        shendx = shape.width - 1,
+        shendy = shape.height - 1,
         shstx = 0,
         shsty = 0;
-    printf("c");
     if (x1 < 0)
     {
         shstx = -x1;
     }
-    printf("d");
+
     if (y1 < 0)
     {
         shsty = -y1;
     }
-    printf("e");
     if (x1 + shape.width >= width)
     {
-        shendx =width-x1-1;
+        shendx = width - x1 - 1;
     }
-    printf("f");
     if (y1 + shape.height >= height)
     {
-        shendy =height-y1-1;
+        shendy = height - y1 - 1;
     }
-    printf("g");
-    for(y = shsty;y<=shendy;y++){
-        for(x = shstx;x<=shendx;x++){
-            printf("%d-%d-%d-%d-%d\n",x,y,x+x1,y+y1,shape.read(x,y));
-            content.write(x+x1,y+y1,shape.read(x,y));
-            content.printout();
+    for (y = shsty; y <= shendy; y++)
+    {
+        for (x = shstx; x <= shendx; x++)
+        {   
+            printf("%d-%d-%d-%d\n", x, y, x + x1, y + y1);
+            content.write(x + x1, y + y1, shape.read(x, y));
         }
     }
-    content.printout();
-    printf("h");
     return 1;
 }
 
@@ -158,5 +152,14 @@ int8_t sgn(float val)
     else
     {
         return (val > 0 ? 1 : -1);
+    }
+}
+
+float flabs(float val)
+{
+    if (val < 0){
+        return -val;
+    }else{
+        return val;
     }
 }
