@@ -127,7 +127,6 @@ uint8_t drawableWindow::drawShape(int16_t x1, int16_t y1, BitArray2d shape)
     {
         for (x = shstx; x <= shendx; x++)
         {   
-            printf("%d-%d-%d-%d\n", x, y, x + x1, y + y1);
             content.write(x + x1, y + y1, shape.read(x, y));
         }
     }
