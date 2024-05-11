@@ -3,14 +3,16 @@
 
 int main()
 {
+
+    uint8_t datas[] =
+        {
+            0x1f, 0x11, 0x11, 0x11, 0x1f, 0x00, 0x00, 0x00};
+    BitArray2d data(8, 8, datas);
     drawableWindow wd;
     wd.initialize(32, 16, 0, 0, 0);
-
-    uint8_t data[] = {0xfa, 0xfa, 0xfa, 0xfa, 0xfa, 0xfa, 0xfa, 0xfa};
-
-    BitArray2d arr(4, 4, data);
-    wd.drawShape(0, 0, arr);
-    wd.content.printout();
+    // wd.drawLine(0, 0, 15, 6);
+    wd.drawShape(3, 3,data);
+    wd.content.printout(0);
 
     return 0;
 }

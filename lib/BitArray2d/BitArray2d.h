@@ -29,6 +29,7 @@ public:
     void initialize(uint16_t width, uint16_t height);
     void takeDataFromMem();
     void printout(uint8_t spaces = 0);
+    void printcout(uint8_t spaces = 0);
     void fill(uint8_t value = 0);
     ~BitArray2d();
 

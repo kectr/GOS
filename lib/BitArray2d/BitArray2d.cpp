@@ -1,10 +1,13 @@
 #include "BitArray2d.h"
+#include <iostream>
+using namespace std;
 
 BitArray2d::BitArray2d()
 {
 }
 
-void BitArray2d::takeDataFromMem(){
+void BitArray2d::takeDataFromMem()
+{
     BitArray2d::data = new uint8_t[height * width_8];
     BitArray2d::fill();
 }
@@ -38,30 +41,54 @@ BitArray2d::~BitArray2d()
 
 uint8_t BitArray2d::read(uint16_t x, uint16_t y)
 {
-    return readBit(data[y * width_8 + x / 8],(x % 8));
+    return readBit(data[y * width_8 + x / 8], (x % 8));
 }
 
 void BitArray2d::write(uint16_t x, uint16_t y, uint8_t value)
 {
-    writeBit(data + y * width_8 + x / 8,(x % 8), value);
+    writeBit(data + y * width_8 + x / 8, (x % 8), value);
 }
 
-void BitArray2d::printout(uint8_t spaces){
-    for(int j = 0;j<height;j++){
-        for(int i = 0;i<width;i++){
-            printf("%d",read(i,j));
-            for(int k = 0;k<spaces;k++){
+void BitArray2d::printout(uint8_t spaces)
+{
+    for (int j = 0; j < height; j++)
+    {
+        for (int i = 0; i < width; i++)
+        {
+            printf("%d", read(i, j));
+            for (int k = 0; k < spaces; k++)
+            {
                 printf(" ");
             }
-            
         }
         printf("\n");
     }
 }
 
-void BitArray2d::fill(uint8_t value){
-    for(uint16_t i = height*width_8-1;;i--){
+void BitArray2d::printcout(uint8_t spaces)
+{
+    for (int j = 0; j < height; j++)
+    {
+        for (int i = 0; i < width; i++)
+        {
+            cout << read(i, j);
+            for (int k = 0; k < spaces; k++)
+            {
+                cout << " ";
+            }
+        }
+        cout << "\n";
+    }
+}
+
+void BitArray2d::fill(uint8_t value)
+{
+    for (uint16_t i = height * width_8 - 1;; i--)
+    {
         data[i] = value;
-        if(i==0){break;}
+        if (i == 0)
+        {
+            break;
+        }
     }
 }
