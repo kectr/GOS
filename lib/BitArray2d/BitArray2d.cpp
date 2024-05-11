@@ -23,6 +23,7 @@ BitArray2d::BitArray2d(uint16_t width, uint16_t height, uint8_t *data)
 {
     BitArray2d::initialize(height, width);
     BitArray2d::data = data;
+    BitArray2d::dataTakenFromOut = true;
 }
 
 BitArray2d::BitArray2d(uint16_t width, uint16_t height)
@@ -33,7 +34,7 @@ BitArray2d::BitArray2d(uint16_t width, uint16_t height)
 
 BitArray2d::~BitArray2d()
 {
-    if (data != nullptr)
+    if (!dataTakenFromOut)
     {
         delete[] data;
     }

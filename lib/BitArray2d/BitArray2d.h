@@ -22,6 +22,7 @@ public:
     uint16_t width;
     uint16_t width_8; //(width+7)/8
     uint8_t *data = nullptr;
+    bool dataTakenFromOut = false; 
 
     BitArray2d();
     BitArray2d(uint16_t width, uint16_t height, uint8_t *data);

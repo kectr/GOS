@@ -5,7 +5,7 @@
 #include "../BitArray2d/BitArray2d.h"
 #endif
 
-#include <stdint.h>
+#include <cstdint>
 
 class window
 {
