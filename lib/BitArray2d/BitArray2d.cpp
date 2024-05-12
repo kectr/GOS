@@ -26,6 +26,14 @@ BitArray2d::BitArray2d(uint16_t width, uint16_t height, uint8_t *data)
     BitArray2d::dataTakenFromOut = true;
 }
 
+BitArray2d::BitArray2d(uint16_t width, uint16_t height,const uint8_t *data)
+{
+    BitArray2d::initialize(height, width);
+    BitArray2d::data = const_cast<uint8_t*>(data);
+    BitArray2d::dataTakenFromOut = true;
+}
+
+
 BitArray2d::BitArray2d(uint16_t width, uint16_t height)
 {
     BitArray2d::initialize(width, height);
@@ -47,7 +55,7 @@ uint8_t BitArray2d::read(uint16_t x, uint16_t y)
 
 void BitArray2d::write(uint16_t x, uint16_t y, uint8_t value)
 {
-    writeBit(data + y * width_8 + x / 8, (x % 8), value);
+    writeBit(data + y * width_8 + x / 8, (x % 8), value);//7-(x%8) MSB
 }
 
 void BitArray2d::printout(uint8_t spaces)
@@ -57,6 +65,22 @@ void BitArray2d::printout(uint8_t spaces)
         for (int i = 0; i < width; i++)
         {
             printf("%d", read(i, j));
+            for (int k = 0; k < spaces; k++)
+            {
+                printf(" ");
+            }
+        }
+        printf("\n");
+    }
+}
+
+void BitArray2d::printouttexture(uint8_t spaces)
+{
+    for (int j = 0; j < height; j++)
+    {
+        for (int i = 0; i < width; i++)
+        {
+            printf("%c", read(i, j)?'1':' ');
             for (int k = 0; k < spaces; k++)
             {
                 printf(" ");
@@ -81,6 +105,7 @@ void BitArray2d::printcout(uint8_t spaces)
         cout << "\n";
     }
 }
+
 
 void BitArray2d::fill(uint8_t value)
 {

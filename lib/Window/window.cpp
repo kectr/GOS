@@ -126,7 +126,7 @@ uint8_t drawableWindow::drawShape(int16_t x1, int16_t y1, BitArray2d shape)
     for (y = shsty; y <= shendy; y++)
     {
         for (x = shstx; x <= shendx; x++)
-        {   
+        {
             content.write(x + x1, y + y1, shape.read(x, y));
         }
     }
@@ -138,6 +138,79 @@ uint8_t window::isValidCordinate(int16_t x1, int16_t y1)
     if (x1 > width || y1 > height || x1 < 0 || y1 < 0)
     {
         return 0;
+    }
+    return 1;
+}
+
+textWindow::textWindow(const uint8_t *font, uint8_t fontWidth, uint8_t fontHeight)
+{
+    textWindow::font = const_cast<uint8_t *>(font);
+    textWindow::fontHeight = fontHeight;
+    textWindow::fontWidth = fontWidth;
+}
+
+textWindow::~textWindow()
+{
+}
+
+uint8_t textWindow::strToFont(string str)
+{
+    for (int16_t i = 0; i < str.length();)
+    {
+        BitArray2d nulchar(fontHeight, fontWidth, font);
+        if (str[i] < ' ' || str[i] == 127)
+        {
+            switch (str[i])
+            {
+            case '\n':
+                cursorX = 0;
+                cursorY += fontHeight;
+                i++;
+                break;
+            case 127:
+                if (cursorX < fontWidth)
+                {
+                    cursorX = width;
+                    if (cursorY < fontHeight)
+                    {
+                        break;
+                    }
+                    cursorY -= fontHeight;
+                }
+                else
+                {
+                    cursorX -= fontWidth;
+                }
+                drawShape(cursorX, cursorY, nulchar);
+                i++;
+                break;
+            default:
+                break;
+            }
+            continue;
+        }
+        else
+        {
+            if (cursorX + fontWidth - 1 < width)
+            {
+                BitArray2d character(fontWidth, fontHeight, font + fontWidth * (str[i]));
+                drawShape(cursorX, cursorY, character);
+                cursorX += fontWidth;
+                i++;
+            }
+            else
+            {
+                cursorX = 0;
+                if (cursorY + fontHeight < height)
+                {
+                    cursorY += fontHeight;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
     }
     return 1;
 }
@@ -156,9 +229,12 @@ int8_t sgn(float val)
 
 float flabs(float val)
 {
-    if (val < 0){
+    if (val < 0)
+    {
         return -val;
-    }else{
+    }
+    else
+    {
         return val;
     }
 }

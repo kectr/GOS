@@ -5,7 +5,7 @@
 #include "../BitArray2d/BitArray2d.h"
 #endif
 
-#include <cstdint>
+#include <string>
 
 class window
 {
@@ -37,11 +37,16 @@ public:
 class textWindow : public drawableWindow
 {
 private:
-    /* data */
-public:
-    textWindow();
-    ~textWindow();
+    uint8_t *font = nullptr;
+    uint8_t fontWidth = 0;
+    uint8_t fontHeight = 0;
 
+public:
+    int16_t cursorX = 0, cursorY = 0;
+    uint8_t strToFont(string str);
+
+    textWindow(const uint8_t *font, uint8_t fontWidth, uint8_t fontHeight);
+    ~textWindow();
 };
 
 int8_t sgn(float val);
