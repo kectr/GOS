@@ -8,7 +8,7 @@ int main()
     string dels = del;
     textWindow txt(font8x8_ib8x8u,8,8);
     txt.initialize(32,16,0,0,0);
-    txt.strToFont("ab\ne");
+    txt.strToFont("kemal");
     txt.content.printouttexture(1);
     txt.strToFont(del);
     txt.content.printouttexture(1);

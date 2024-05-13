@@ -5,6 +5,10 @@
 #include "../BitArray2d/BitArray2d.h"
 #endif
 
+#ifndef sgn
+#include "../sgn/sgn.h"
+#endif
+
 #include <string>
 
 class window
