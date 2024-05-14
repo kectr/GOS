@@ -6,7 +6,11 @@
 #endif
 
 #ifndef sgn
-#include "../sgn/sgn.h"
+#include "../basicFunctions/sgn.h"
+#endif
+
+#ifndef flabs
+#include "../basicFunctions/flabs.h"
 #endif
 
 #include <string>
@@ -52,9 +56,5 @@ public:
     textWindow(const uint8_t *font, uint8_t fontWidth, uint8_t fontHeight);
     ~textWindow();
 };
-
-int8_t sgn(float val);
-
-float flabs(float val);
 
 #endif

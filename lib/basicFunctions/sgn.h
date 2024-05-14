@@ -1,4 +1,5 @@
 #ifndef sgn
+#include <cstdint>
 int8_t sgn(float val)
 {
     if (0 == val)

@@ -13,8 +13,14 @@ public:
     float y = 0;
 
     Vector();
-    Vector(float x,float y);
+    Vector(float x, float y);
     ~Vector();
+    
+    void set(Vector V);
+    // Vector operator*(float lambda);
+    // Vector operator+(Vector V);
+    // Vector operator-(Vector V);
+    
 };
 
 class Particle
@@ -22,37 +28,43 @@ class Particle
 private:
     /* data */
 public:
-    bool isWall = false;//tarık bunu düşün=?
+    bool isWall = false; // tarık bunu düşün=?
     bool isActive = false;
     float mass;
     Vector position;
     Vector velocity;
     Vector acceleration;
-    float radius = 1; //şekil?    
-
+    float radius = 1; // şekil?
 
     Particle();
-    Particle(float mass,Vector position,Vector velocity,Vector acceleration,bool isWall);
+    Particle(float mass, Vector position, Vector velocity, Vector acceleration, bool isWall);
     ~Particle();
 
-    void Activate();
-
-
+    void activate(bool value);
+    void makeWall(bool value);
 };
-
 
 class PhysicsEngine
 {
 private:
     /* data */
 public:
-    Particle* Particles = nullptr;
-    uint8_t numOfParticles = 0;
+    Particle *Particles = nullptr;
+    uint16_t numOfParticles = 0;
+    int16_t i = 0;
+    int8_t dvx = 0;
+    int8_t dvy = 0;
+    float dx = 0;
+    float dy = 0;
+    float tempvx = 0;
+    float tempvy = 0;
 
-    PhysicsEngine(int16_t numOfParticles);
+    PhysicsEngine(uint16_t numOfParticles);
     ~PhysicsEngine();
 
-    bool willCollide(uint8_t p1,uint8_t p2);
-    
+    bool isColliding(uint16_t p1, uint16_t p2);
+    void setSystemAcceleration(Vector acceleration);
+    void updateParticles(float deltat);
+    void collide(uint16_t p1, uint16_t p2);
 };
 #endif

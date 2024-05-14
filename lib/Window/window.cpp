@@ -1,6 +1,6 @@
 #include "window.h"
 #include "stdio.h"
-#include "../sgn/sgn.h"
+#include "../basicFunctions/sgn.h"
 
 window::window()
 {
@@ -216,14 +216,3 @@ uint8_t textWindow::strToFont(string str)
     return 1;
 }
 
-float flabs(float val)
-{
-    if (val < 0)
-    {
-        return -val;
-    }
-    else
-    {
-        return val;
-    }
-}
