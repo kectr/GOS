@@ -15,13 +15,17 @@ public:
     Vector();
     Vector(float x, float y);
     ~Vector();
-    
+
     void set(Vector V);
-    // Vector operator*(float lambda);
-    // Vector operator+(Vector V);
-    // Vector operator-(Vector V);
-    
+    void set(float x, float y);
+
+    Vector operator*(float lambda);
+    float operator*(Vector V);
+    Vector operator+(Vector V);
+    Vector operator-(Vector V);
 };
+
+float eucludianDistance(Vector v1,Vector v2);
 
 class Particle
 {
