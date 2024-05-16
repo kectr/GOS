@@ -15,5 +15,6 @@
         "streambuf": "cpp",
         "tuple": "cpp",
         "iostream": "cpp"
-    }
+    },
+    "cmake.configureOnOpen": false
 }
